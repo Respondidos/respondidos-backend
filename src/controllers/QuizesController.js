@@ -6,12 +6,12 @@ module.exports = {
       const quizes = await Quiz.find()
       res.json(quizes)
     } catch (ex) {
-      res.json(ex);
+      res.json(ex)
     }
   },
   async getById (req, res) {
     try {
-      const quiz = await Quiz.find({ _id: req.params.id})
+      const quiz = await Quiz.find({ _id: req.params.id })
       res.json(quiz)
     } catch (ex) {
       res.json(ex)
@@ -23,7 +23,15 @@ module.exports = {
       const quiz = await Quiz.create(myQuiz)
       res.json(quiz)
     } catch (ex) {
-      res.json(ex);
+      res.json(ex)
+    }
+  },
+  async delete (req, res) {
+    try {
+      const quiz = await Quiz.deleteOne({ _id: req.params.id })
+      res.json(quiz)
+    } catch (ex) {
+       res.json(ex)
     }
   }
 }
