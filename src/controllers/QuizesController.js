@@ -9,6 +9,14 @@ module.exports = {
       res.json(ex);
     }
   },
+  async getById (req, res) {
+    try {
+      const quiz = await Quiz.find({ _id: req.params.id})
+      res.json(quiz)
+    } catch (ex) {
+      res.json(ex)
+    }
+  },
   async save (req, res) {
     try {
       const myQuiz = req.body
