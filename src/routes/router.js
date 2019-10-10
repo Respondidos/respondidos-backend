@@ -1,10 +1,7 @@
 const express = require('express')
 const router = express.Router()
-const QuizesController = require('../controllers/QuizesController')
+const quizesAPI = require('./quizesAPI')
 
-router.get('/quizes', QuizesController.getAll)
-router.get('/quizes/:id', QuizesController.getById)
-router.post('/quizes', QuizesController.save)
-router.delete('/quizes/:id', QuizesController.delete)
+router.use('/quizes', quizesAPI)
 
 module.exports = router
