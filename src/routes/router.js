@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
-const quizesAPI = require('./quizzesAPI')
+const quizzesAPI = require('./quizzesAPI')
 const authAPI = require('./authAPI')
 
-router.use('/quizes', quizesAPI)
+router.use('/quizzes', quizzesAPI)
 router.use('/auth', authAPI)
 
 module.exports = router
