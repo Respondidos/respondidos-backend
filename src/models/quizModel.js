@@ -3,8 +3,15 @@ const QuestionSchema = require('./questionModel').schema
 
 let quizSchema = new mongoose.Schema({
   info: {
-    name: String,
-    creatorName: String
+    name: {
+      type: String,
+      required: true
+    },
+    creator: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: 'User'
+    }
   },
   questions: [QuestionSchema]
 })
