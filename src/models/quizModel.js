@@ -1,7 +1,7 @@
 const mongoose = require('../config/mongoConnection')
 const QuestionSchema = require('./questionModel').schema
 
-let quizSchema = mongoose.Schema({
+let quizSchema = new mongoose.Schema({
   info: {
     name: String,
     creatorName: String

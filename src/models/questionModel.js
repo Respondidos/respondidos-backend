@@ -6,7 +6,7 @@ const validator = [
   { validator: hasOneCorrectAnswer, msg: 'The options must contain one correct answer'}
 ]
 
-let questionSchema = mongoose.Schema({
+const questionSchema = new mongoose.Schema({
   header: String,
   options: {
     type: [QuestionOptionSchema],

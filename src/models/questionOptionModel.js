@@ -1,6 +1,6 @@
 const mongoose = require('../config/mongoConnection')
 
-let questionOptionSchema = mongoose.Schema({
+const questionOptionSchema = new mongoose.Schema({
   text: String,
   isCorrect: Boolean
 }, {
