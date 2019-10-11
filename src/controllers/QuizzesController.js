@@ -3,7 +3,7 @@ const Quiz = require('../models/quizModel')
 module.exports = {
   async getAll (req, res) {
     try {
-      const quizes = await Quiz.find()
+      const quizes = await Quiz.find().populate('info.creator')
       res.json(quizes)
     } catch (ex) {
       res.json(ex)
@@ -11,7 +11,7 @@ module.exports = {
   },
   async getById (req, res) {
     try {
-      const quiz = await Quiz.find({ _id: req.params.id })
+      const quiz = await Quiz.find({ _id: req.params.id }).populate('info.creator')
       res.json(quiz)
     } catch (ex) {
       res.json(ex)
@@ -20,7 +20,7 @@ module.exports = {
   async save (req, res) {
     try {
       const myQuiz = req.body
-      const quiz = await Quiz.create(myQuiz)
+      const quiz = await Quiz.create(myQuiz).populate('info.creator')
       res.json(quiz)
     } catch (ex) {
       res.json(ex)
