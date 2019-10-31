@@ -13,6 +13,17 @@ let quizSchema = new mongoose.Schema({
       ref: 'User'
     }
   },
+  ranking: [{
+    student: {   
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    },
+    points: {
+      type: Number,
+      default: 0
+    }    
+  }],
+  
   questions: [QuestionSchema]
 })
 
