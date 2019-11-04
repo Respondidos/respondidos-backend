@@ -1,4 +1,6 @@
 const mongoose = require('../config/mongoConnection')
+const shortid = require('shortid');
+
 const QuestionSchema = require('./questionModel').schema
 
 let quizSchema = new mongoose.Schema({
@@ -13,6 +15,11 @@ let quizSchema = new mongoose.Schema({
       ref: 'User'
     }
   },
+  accessCode: {
+    type: String,
+    unique: true,
+    default: shortid.generate,
+  },
   ranking: [{
     student: {   
       type: mongoose.Schema.Types.ObjectId,
@@ -23,7 +30,6 @@ let quizSchema = new mongoose.Schema({
       default: 0
     }    
   }],
-  
   questions: [QuestionSchema]
 })
 
