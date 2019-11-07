@@ -20,7 +20,7 @@ module.exports = {
   async save (req, res) {
     try {
       const myQuiz = req.body
-      const quiz = await Quiz.create(myQuiz)
+      const quiz = await Quiz.create(myQuiz).populate('info.creator')
       return res.json(quiz)
     } catch (ex) {
       return res.json(ex)
