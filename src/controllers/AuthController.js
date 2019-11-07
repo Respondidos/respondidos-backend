@@ -14,7 +14,7 @@ module.exports = {
   async register (req, res) {
     try {
       const user = await User.create(req.body)
-
+      console.log(user)
       user.password = undefined
 
       return res.send({ user })
