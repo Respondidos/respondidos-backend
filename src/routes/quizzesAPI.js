@@ -8,5 +8,6 @@ router.get('/', QuizzesController.getAll)
 router.get('/:id', QuizzesController.getById)
 router.post('/', QuizzesController.save)
 router.delete('/:id', QuizzesController.delete)
+router.post('/addscore', QuizzesController.addUserScore)
 
 module.exports = router
