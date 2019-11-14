@@ -11,7 +11,6 @@ module.exports = {
   },
   async getById (req, res) {
     try {
-      console.log('dale')
       const quiz = await Quiz.find({ _id: req.params.id }).populate('info.creator')
       return res.json(quiz)
     } catch (ex) {
@@ -43,4 +42,4 @@ module.exports = {
       return res.json(ex)
     }
   }
-}
+} 

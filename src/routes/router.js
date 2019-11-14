@@ -8,6 +8,6 @@ const authAPI = require('./authAPI')
 router.use('/quizzes', quizzesAPI)
 router.use('/questions', questionsAPI)
 router.use('/auth', authAPI)
-router.use('/userAPI', userAPI)
+router.use('/user', userAPI)
 
 module.exports = router
