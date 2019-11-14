@@ -5,7 +5,7 @@ const QuizzesController = require('../controllers/QuizzesController')
 
 router.use(authMiddleware)
 router.get('/:id', QuizzesController.getById)
-router.get('/:accessCode', QuizzesController.getById)
+router.get('/code/:accessCode', QuizzesController.getByCode)
 router.post('/', QuizzesController.save)
 router.delete('/:id', QuizzesController.delete)
 

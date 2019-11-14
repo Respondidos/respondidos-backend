@@ -11,6 +11,7 @@ module.exports = {
   },
   async getById (req, res) {
     try {
+      console.log('dale')
       const quiz = await Quiz.find({ _id: req.params.id }).populate('info.creator')
       return res.json(quiz)
     } catch (ex) {
@@ -34,10 +35,10 @@ module.exports = {
       return res.json(ex)
     }
   },
-  async addStudent (req, res) {
+  async getByCode (req, res) {
     try {
-      const quiz = await Quiz.findById(req.params.id)
-      const ranking = { 'student': req.userId }
+      const quiz = await Quiz.find({ accessCode: req.params.accessCode }).populate('info.creator')
+      return res.json(quiz)
     } catch (ex) {
       return res.json(ex)
     }
