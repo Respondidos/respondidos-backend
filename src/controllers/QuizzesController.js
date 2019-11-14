@@ -33,5 +33,13 @@ module.exports = {
     } catch (ex) {
       return res.json(ex)
     }
+  },
+  async addStudent (req, res) {
+    try {
+      const quiz = await Quiz.findById(req.params.id)
+      const ranking = { 'student': req.userId }
+    } catch (ex) {
+      return res.json(ex)
+    }
   }
 }
