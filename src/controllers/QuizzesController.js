@@ -57,10 +57,10 @@ module.exports = {
         })
       }
 
-      await Quiz.findOneAndUpdate({ accessCode }, quiz, {new: true}, (err, quiz) => {
-        if (err) return res.json(err)
-        return res.json(quiz)
-      })
+      await Quiz.findOneAndUpdate({ accessCode }, quiz)
+
+      const updatedQuiz = await Quiz.findOne({ accessCode }).populate('ranking.student')
+      res.json(updatedQuiz)
     } catch (ex) {
       return res.json(ex)
     }

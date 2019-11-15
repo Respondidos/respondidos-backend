@@ -24,14 +24,7 @@ const userSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now
-  },
-  quizzes: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true,
-      ref: 'Quiz'
-    }
-  ]
+  }
 })
 
 userSchema.pre('save', async function (next) {
