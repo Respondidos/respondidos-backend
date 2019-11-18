@@ -12,8 +12,6 @@ const questionSchema = new mongoose.Schema({
     type: [QuestionOptionSchema],
     validate: validator
   }
-}, {
-  _id : false
 })
 
 function optionsLength(val) {

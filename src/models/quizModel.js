@@ -1,8 +1,6 @@
 const mongoose = require('../config/mongoConnection')
 const shortid = require('shortid');
 
-const QuestionSchema = require('./questionModel').schema
-
 let quizSchema = new mongoose.Schema({
   info: {
     name: {
@@ -30,7 +28,10 @@ let quizSchema = new mongoose.Schema({
       default: 0
     }    
   }],
-  questions: [QuestionSchema]
+  questions: [{   
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Question'
+  }]
 })
 
 module.exports = mongoose.model('Quiz', quizSchema)
