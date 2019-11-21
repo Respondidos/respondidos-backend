@@ -21,6 +21,10 @@ const userSchema = new mongoose.Schema({
     type:String,
     required: true
   },
+  experience: {
+    type: Number,
+    default: 0
+  },
   createdAt: {
     type: Date,
     default: Date.now
