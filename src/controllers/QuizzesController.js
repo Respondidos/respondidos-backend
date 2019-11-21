@@ -41,5 +41,36 @@ module.exports = {
     } catch (ex) {
       return res.json(ex)
     }
+  },
+  async addUserScore (req, res) {
+    try {
+      const { accessCode, score } = req.body
+      const { userId } = req
+
+      const quiz = await Quiz.findOne({ accessCode })
+
+      const existsUserScore = quiz.ranking.map(element => element['student']).includes(userId)
+
+      if (existsUserScore) {
+        quiz.ranking = quiz.ranking.map(element => {
+          if (element['student'] == userId) {
+            element['points'] = score
+          }
+          return element
+        })
+      } else {
+        quiz.ranking.push({
+          student: userId,
+          points: score
+        })
+      }
+
+      await Quiz.findOneAndUpdate({ accessCode }, quiz)
+
+      const updatedQuiz = await Quiz.findOne({ accessCode }).populate('ranking.student')
+      res.json(updatedQuiz)
+    } catch (ex) {
+      return res.json(ex)
+    }
   }
 } 
