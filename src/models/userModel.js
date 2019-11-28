@@ -24,6 +24,18 @@ const userSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now
+  },
+  avatar: {
+    type: Number,
+    default: 0
+  },
+  experience: {
+    type: Number,
+    default: 0
+  },
+  level: {
+    type: Number,
+    default: 0
   }
 })
 

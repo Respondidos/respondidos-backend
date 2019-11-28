@@ -8,5 +8,6 @@ router.use(authMiddleware)
 router.get('/quizzes/own', UserController.getOwnQuizzes)
 
 router.get('/quizzes/participating', UserController.getParticipatingQuizzes)
+router.get('/', UserController.getUserInfo)
 
 module.exports = router

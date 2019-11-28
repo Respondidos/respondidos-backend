@@ -1,4 +1,5 @@
 const Quiz = require('../models/quizModel')
+const User = require('../models/userModel')
 
 module.exports = {
   async getOwnQuizzes (req, res) {
@@ -17,4 +18,12 @@ module.exports = {
       return res.json(ex)
     }
   },
+  async getUserInfo (req, res) {
+    try {
+      const user = await User.findById(req.userId);
+      return res.json(user)
+    } catch (ex) {
+      return res.json(ex)
+    }
+  }
 }

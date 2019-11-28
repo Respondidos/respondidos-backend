@@ -36,7 +36,7 @@ module.exports = {
   },
   async getByCode (req, res) {
     try {
-      const quiz = await Quiz.find({ accessCode: req.params.accessCode }).populate('info.creator')
+      const quiz = await Quiz.find({ accessCode: req.params.accessCode }).populate(['info.creator', 'questions'])
       return res.json(quiz)
     } catch (ex) {
       return res.json(ex)
