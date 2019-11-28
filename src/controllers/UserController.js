@@ -25,5 +25,15 @@ module.exports = {
     } catch (ex) {
       return res.json(ex)
     }
+  },
+  async putUserAvatar (req, res) {
+    console.log('change avatar')
+    try {
+      const { avatar } = req.body
+      const user = await User.findByIdAndUpdate(req.userId, { avatar }, { new:true });
+      return res.json(user)
+    } catch (ex) {
+      return res.json(ex)
+    }
   }
 }
