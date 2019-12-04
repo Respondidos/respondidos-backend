@@ -1,4 +1,5 @@
 const Quiz = require('../models/quizModel')
+const User = require('../models/userModel')
 
 module.exports = {
   async getAll (req, res) {
@@ -85,6 +86,11 @@ module.exports = {
         })
       }
 
+      const student = await User.findById(userId)
+
+      student['experience'] = student['experience'] + score
+
+      await Quiz.findOneAndUpdate({ _id: userId }, student)
       await Quiz.findOneAndUpdate({ accessCode }, quiz)
 
       const updatedQuiz = await Quiz.findOne({ accessCode }).populate('ranking.student')
