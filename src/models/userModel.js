@@ -26,8 +26,8 @@ const userSchema = new mongoose.Schema({
     default: Date.now
   },
   avatar: {
-    type: Number,
-    default: 0
+    type: String,
+    default: ''
   },
   experience: {
     type: Number,

@@ -19,9 +19,20 @@ module.exports = {
   },
   async save (req, res) {
     try {
-      const myQuiz = req.body
-      const quiz = await Quiz.create(myQuiz).populate('info.creator')
-      return res.json(quiz)
+      var myQuiz = req.body
+      myQuiz.info.creator = req.userId
+      console.log("save")
+      const quiz = await Quiz.create(myQuiz, (err, quiz) => {
+        if (err) {
+          return res.status(500).json({
+            message: "ocorreu um erro na criação do quiz"
+          })
+        } else {
+          return res.json(quiz.populate('info.creator'))
+        }
+      })
+      console.log(quiz)
+      
     } catch (ex) {
       return res.json(ex)
     }
@@ -36,8 +47,17 @@ module.exports = {
   },
   async getByCode (req, res) {
     try {
-      const quiz = await Quiz.find({ accessCode: req.params.accessCode }).populate(['info.creator', 'questions'])
-      return res.json(quiz)
+      var quiz = await Quiz.findOne({ accessCode: req.params.accessCode }).populate(['info.creator', 'questions', 'ranking.student'])
+      var isInTheQuiz = quiz.ranking.filter(rank => rank.student._id === req.userId)
+      console.log(quiz)
+      if (isInTheQuiz) {
+        return res.status(412).json({
+          isInTheQuiz: true,
+          message: 'O usuario já participou desse quiz'
+        })
+      } else {
+        return res.json(quiz)
+      }
     } catch (ex) {
       return res.json(ex)
     }
